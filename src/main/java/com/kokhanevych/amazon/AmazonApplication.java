@@ -9,5 +9,4 @@ public class AmazonApplication {
     public static void main(String[] args) {
         SpringApplication.run(AmazonApplication.class, args);
     }
-
 }
