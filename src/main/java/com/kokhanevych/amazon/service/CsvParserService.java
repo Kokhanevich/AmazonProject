@@ -27,8 +27,8 @@ public class CsvParserService {
     @Autowired
     private ReviewRepository reviewRepository;
     private static final char DEFAULT_SEPARATOR = ',';
-    private static final String FILE_NAME = "Reviews.csv";
-//    private static final String FILE_NAME = "Test.csv";
+//    private static final String FILE_NAME = "Reviews.csv";
+    private static final String FILE_NAME = "Test.csv";
     private List<String[]> strings = new ArrayList<>();
 
     private List<String[]> parseFile(String fileName) throws IOException {
