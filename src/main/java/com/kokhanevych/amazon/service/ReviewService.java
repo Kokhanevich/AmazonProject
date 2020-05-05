@@ -1,6 +1,9 @@
 package com.kokhanevych.amazon.service;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.kokhanevych.amazon.repository.ReviewRepository;
@@ -21,7 +24,7 @@ public class ReviewService {
         return reviewRepository.getMostCommentedItemsId(limit);
     }
 
-    public List<String> getMostUsefulWords(Integer limit) {
+    public List<String> getMostUsedWords(Integer limit) {
         List<String> reviews = reviewRepository.getReviews();
         Map<String, Long> topWords = selectAndCountWords(reviews);
         return topWords.entrySet()
@@ -33,21 +36,21 @@ public class ReviewService {
     }
 
     private Map<String, Long> selectAndCountWords(List<String> reviews) {
-        Map<String, Long> usefulWords = new HashMap<>();
+        Map<String, Long> usedWords = new HashMap<>();
         reviews.forEach(review -> {
             String[] words = review.toUpperCase()
                     .replaceAll("\\W+", " ")
                     .split(" ");
 
             Arrays.stream(words).forEach(word -> {
-                if (usefulWords.containsKey(word)) {
-                    Long value = usefulWords.remove(word);
-                    usefulWords.put(word, ++value);
+                if (usedWords.containsKey(word)) {
+                    Long value = usedWords.remove(word);
+                    usedWords.put(word, ++value);
                 } else {
-                    usefulWords.put(word, 0L);
+                    usedWords.put(word, 0L);
                 }
             });
         });
-        return usefulWords;
+        return usedWords;
     }
 }

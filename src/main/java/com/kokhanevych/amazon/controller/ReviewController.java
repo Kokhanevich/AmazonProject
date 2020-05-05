@@ -28,6 +28,6 @@ public class ReviewController {
 
     @GetMapping("/getWords/{limit}")
     public List<String> getMostPopularWords(@PathVariable("limit") Integer limit) {
-        return reviewService.getMostUsefulWords(limit);
+        return reviewService.getMostUsedWords(limit);
     }
 }
